@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анастасия Тверитина](https://up.htmlacademy.ru/javascript/20/user/1352727).
-* Наставник: `Неизвестно`.
+* Наставник: [Вадим Попов](https://htmlacademy.ru/profile/id1503771).
 
 ---
 
