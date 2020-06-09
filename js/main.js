@@ -10,6 +10,11 @@ var PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
 ];
 
+var mapPins = document.querySelector('.map__pins');
+var pin = document.querySelector('#pin')
+  .content
+  .querySelector('button');
+
 var getRandomFromList = function (array) {
   return array[Math.floor((Math.random() * array.length))];
 };
@@ -18,6 +23,10 @@ var getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+var getRandomInt = function (max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 var shuffleArray = function (array) {
   for (var i = array.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -25,6 +34,10 @@ var shuffleArray = function (array) {
     array[i] = array[j];
     array[j] = temp;
   }
+};
+
+var getElementWidth = function (element) {
+  return element.offsetWidth;
 };
 
 var generateRandomArray = function (array) {
@@ -61,7 +74,7 @@ var generateRentList = function () {
         photos: generateRandomArray(PHOTOS),
       },
       location: {
-        x: getRandomNumber(100, 1100),
+        x: getRandomInt(getElementWidth(mapPins)),
         y: getRandomNumber(130, 630),
       }
     };
@@ -75,11 +88,6 @@ generateRentList();
 var map = document.querySelector('.map');
 map.classList.remove('map--faded');
 
-var pin = document.querySelector('#pin')
-  .content
-  .querySelector('button');
-
-var mapPins = document.querySelector('.map__pins');
 var fragment = document.createDocumentFragment();
 
 for (var i = 0; i < rentList.length; i++) {
