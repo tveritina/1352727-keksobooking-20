@@ -25,7 +25,7 @@ var getRandomNumber = function (min, max) {
 
 var getRandomInt = function (max) {
   return Math.floor(Math.random() * Math.floor(max));
-}
+};
 
 var shuffleArray = function (array) {
   for (var i = array.length - 1; i > 0; i--) {
