@@ -150,6 +150,15 @@ mainMapPin.addEventListener('mousedown', function (evt) {
   }
 });
 
+mainMapPin.addEventListener('keydown', function (evt) {
+  if (evt.code == 'Enter') {
+    activatePage();
+    blockMapFilter(false);
+    blockFormFilter(false);
+  }
+});
+
+
 /*
 var generateCard = function (rentListElement) {
   var cardElement = card.cloneNode(true);
