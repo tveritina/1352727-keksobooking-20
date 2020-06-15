@@ -9,6 +9,8 @@ var PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
 ];
+var HALF_MAIN_PIN_X = 31;
+var MAIN_PIN_Y = 84;
 
 var mapPins = document.querySelector('.map__pins');
 var pin = document.querySelector('#pin')
@@ -147,6 +149,7 @@ mainMapPin.addEventListener('mousedown', function (evt) {
     activatePage();
     blockMapFilter(false);
     blockFormFilter(false);
+    fillAddress();
   }
 });
 
@@ -157,6 +160,18 @@ mainMapPin.addEventListener('keydown', function (evt) {
     blockFormFilter(false);
   }
 });
+
+//Заполнение поля адреса
+var fillAddress = function () {
+  var adressInput = document.querySelector('#address');
+  var mainPin = document.querySelector('.map__pin--main');
+  var mainPinLocationTop = parseInt(mainPin.style.top);
+  var mainPinLocationLeft = parseInt(mainPin.style.left);
+
+  adressInput.value = (Math.round(mainPinLocationTop + MAIN_PIN_Y)) + ', ' + (Math.round(mainPinLocationLeft + HALF_MAIN_PIN_X));
+};
+
+fillAddress();
 
 
 /*
