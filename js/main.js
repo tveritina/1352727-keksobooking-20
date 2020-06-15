@@ -119,24 +119,34 @@ var activatePage = function () {
 };
 
 //Блокирует поля формы при открытии страницы
-var formFieldsets = document.querySelectorAll('.ad-form fieldset');
-for (var i = 0; i < formFieldsets.length; i++) {
-  formFieldsets[i].disabled = true;
-};
+var blockFormFilter = function(state){
+  var formFieldsets = document.querySelectorAll('.ad-form fieldset');
+  for (var i = 0; i < formFieldsets.length; i++) {
+    formFieldsets[i].disabled = state;
+  };
+}
 
 //Блокировка фильтра
-var blockMapFilter = function () {
+var blockMapFilter = function (state) {
   var mapFilter = document.querySelectorAll('.map__filters .map__filter');
   var mapFeaturesFilter = document.querySelector('.map__filters .map__features');
 
   for (var i = 0; i < mapFilter.length; i++) {
-    mapFilter[i].disabled = true;
+    mapFilter[i].disabled = state;
   }
 
-  mapFeaturesFilter.disabled = true;
+  mapFeaturesFilter.disabled = state;
 };
 
-blockMapFilter();
+blockMapFilter(true);
+
+//Активация страницы и разблокировка
+var mainMapPin = document.querySelector('.map__pin--main');
+mainMapPin.addEventListener('mousedown', function () {
+  activatePage();
+  blockMapFilter(false);
+  blockFormFilter(false);
+});
 
 /*
 var generateCard = function (rentListElement) {
