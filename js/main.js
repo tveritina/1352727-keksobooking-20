@@ -142,6 +142,11 @@ var blockMapFilter = function (state) {
 
 blockMapFilter(true);
 
+var activateForm = function () {
+  var form = document.querySelector('.ad-form');
+  form.classList.remove('ad-form--disabled');
+};
+
 // Активация страницы и разблокировка
 var mainMapPin = document.querySelector('.map__pin--main');
 mainMapPin.addEventListener('mousedown', function (evt) {
@@ -150,6 +155,7 @@ mainMapPin.addEventListener('mousedown', function (evt) {
     blockMapFilter(false);
     blockFormFilter(false);
     fillAddress();
+    activateForm();
   }
 });
 
@@ -158,6 +164,8 @@ mainMapPin.addEventListener('keydown', function (evt) {
     activatePage();
     blockMapFilter(false);
     blockFormFilter(false);
+    fillAddress();
+    activateForm();
   }
 });
 
