@@ -117,6 +117,11 @@ var activatePage = function () {
   generateOffersPins();
 };
 
+var formFieldsets = document.querySelectorAll('.ad-form fieldset');
+for (let i = 0; i < formFieldsets.length; i++) {
+  formFieldsets[i].disabled = true;
+}
+
 /*
 var generateCard = function (rentListElement) {
   var cardElement = card.cloneNode(true);
