@@ -17,9 +17,9 @@ var pin = document.querySelector('#pin')
   .content
   .querySelector('button');
 
-var card = document.querySelector('#card')
-  .content
-  .querySelector('article');
+// var card = document.querySelector('#card')
+//   .content
+//   .querySelector('article');
 
 var getRandomFromList = function (array) {
   return array[Math.floor((Math.random() * array.length))];
@@ -114,21 +114,21 @@ var generateOffersPins = function () {
   mapPins.appendChild(fragment);
 };
 
-//Активация карты
+// Активация карты
 var activatePage = function () {
   activateMap();
   generateOffersPins();
 };
 
-//Блокирует поля формы при открытии страницы
+// Блокирует поля формы при открытии страницы
 var blockFormFilter = function (state) {
   var formFieldsets = document.querySelectorAll('.ad-form fieldset');
   for (var i = 0; i < formFieldsets.length; i++) {
     formFieldsets[i].disabled = state;
-  };
-}
+  }
+};
 
-//Блокировка фильтра
+// Блокировка фильтра
 var blockMapFilter = function (state) {
   var mapFilter = document.querySelectorAll('.map__filters .map__filter');
   var mapFeaturesFilter = document.querySelector('.map__filters .map__features');
@@ -142,10 +142,10 @@ var blockMapFilter = function (state) {
 
 blockMapFilter(true);
 
-//Активация страницы и разблокировка
+// Активация страницы и разблокировка
 var mainMapPin = document.querySelector('.map__pin--main');
 mainMapPin.addEventListener('mousedown', function (evt) {
-  if (evt.button == 0) {
+  if (evt.button === 0) {
     activatePage();
     blockMapFilter(false);
     blockFormFilter(false);
@@ -154,25 +154,46 @@ mainMapPin.addEventListener('mousedown', function (evt) {
 });
 
 mainMapPin.addEventListener('keydown', function (evt) {
-  if (evt.code == 'Enter') {
+  if (evt.code === 'Enter') {
     activatePage();
     blockMapFilter(false);
     blockFormFilter(false);
   }
 });
 
-//Заполнение поля адреса
+// Заполнение поля адреса
 var fillAddress = function () {
   var adressInput = document.querySelector('#address');
   var mainPin = document.querySelector('.map__pin--main');
-  var mainPinLocationTop = parseInt(mainPin.style.top);
-  var mainPinLocationLeft = parseInt(mainPin.style.left);
+  var mainPinLocationTop = parseInt(mainPin.style.top, 10);
+  var mainPinLocationLeft = parseInt(mainPin.style.left, 10);
 
   adressInput.value = (Math.round(mainPinLocationTop + MAIN_PIN_Y)) + ', ' + (Math.round(mainPinLocationLeft + HALF_MAIN_PIN_X));
 };
 
 fillAddress();
 
+// Валидация количества гостей
+var roomsSelect = document.querySelector('#room_number');
+var capacitySelect = document.querySelector('#capacity');
+
+capacitySelect.addEventListener('change', function () {
+  validateGuests();
+});
+
+roomsSelect.addEventListener('change', function () {
+  validateGuests();
+});
+
+var validateGuests = function () {
+  if (capacitySelect.value > roomsSelect.value) {
+    capacitySelect.setCustomValidity('Гостям будет тесно, выберите меньшее количество гостей');
+  } else if (roomsSelect.value === 100 && capacitySelect.value > 0 || roomsSelect.value !== 100 && capacitySelect.value === 0) {
+    capacitySelect.setCustomValidity('Для 100 комнат доступен только вариант Не для гостей');
+  } else {
+    capacitySelect.setCustomValidity('');
+  }
+};
 
 /*
 var generateCard = function (rentListElement) {
