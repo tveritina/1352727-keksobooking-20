@@ -112,15 +112,31 @@ var generateOffersPins = function () {
   mapPins.appendChild(fragment);
 };
 
+//Активация карты
 var activatePage = function () {
   activateMap();
   generateOffersPins();
 };
 
+//Блокирует поля формы при открытии страницы
 var formFieldsets = document.querySelectorAll('.ad-form fieldset');
-for (let i = 0; i < formFieldsets.length; i++) {
+for (var i = 0; i < formFieldsets.length; i++) {
   formFieldsets[i].disabled = true;
-}
+};
+
+//Блокировка фильтра
+var blockMapFilter = function () {
+  var mapFilter = document.querySelectorAll('.map__filters .map__filter');
+  var mapFeaturesFilter = document.querySelector('.map__filters .map__features');
+
+  for (var i = 0; i < mapFilter.length; i++) {
+    mapFilter[i].disabled = true;
+  }
+
+  mapFeaturesFilter.disabled = true;
+};
+
+blockMapFilter();
 
 /*
 var generateCard = function (rentListElement) {
