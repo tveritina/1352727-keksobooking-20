@@ -89,25 +89,35 @@ var generateRentList = function () {
 
 generateRentList();
 
-var map = document.querySelector('.map');
-map.classList.remove('map--faded');
+var activateMap = function () {
+  var map = document.querySelector('.map');
+  map.classList.remove('map--faded');
+};
 
-var fragment = document.createDocumentFragment();
+var generateOffersPins = function () {
+  var fragment = document.createDocumentFragment();
 
-for (var i = 0; i < rentList.length; i++) {
-  var element = pin.cloneNode(true);
-  var pinImg = element.querySelector('img');
+  for (var i = 0; i < rentList.length; i++) {
+    var element = pin.cloneNode(true);
+    var pinImg = element.querySelector('img');
 
-  element.style.left = rentList[i].location.x + 'px';
-  element.style.top = rentList[i].location.y + 'px';
-  pinImg.src = rentList[i].author.avatar;
-  pinImg.alt = rentList[i].offer.title;
+    element.style.left = rentList[i].location.x + 'px';
+    element.style.top = rentList[i].location.y + 'px';
+    pinImg.src = rentList[i].author.avatar;
+    pinImg.alt = rentList[i].offer.title;
 
-  fragment.appendChild(element);
-}
+    fragment.appendChild(element);
+  }
 
-mapPins.appendChild(fragment);
+  mapPins.appendChild(fragment);
+};
 
+var activatePage = function () {
+  activateMap();
+  generateOffersPins();
+};
+
+/*
 var generateCard = function (rentListElement) {
   var cardElement = card.cloneNode(true);
 
@@ -150,5 +160,5 @@ var generateCard = function (rentListElement) {
 };
 
 generateCard(rentList[0]);
-
+*/
 
