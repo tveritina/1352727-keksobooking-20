@@ -119,7 +119,7 @@ var activatePage = function () {
 };
 
 //Блокирует поля формы при открытии страницы
-var blockFormFilter = function(state){
+var blockFormFilter = function (state) {
   var formFieldsets = document.querySelectorAll('.ad-form fieldset');
   for (var i = 0; i < formFieldsets.length; i++) {
     formFieldsets[i].disabled = state;
@@ -142,10 +142,12 @@ blockMapFilter(true);
 
 //Активация страницы и разблокировка
 var mainMapPin = document.querySelector('.map__pin--main');
-mainMapPin.addEventListener('mousedown', function () {
-  activatePage();
-  blockMapFilter(false);
-  blockFormFilter(false);
+mainMapPin.addEventListener('mousedown', function (evt) {
+  if (evt.button == 0) {
+    activatePage();
+    blockMapFilter(false);
+    blockFormFilter(false);
+  }
 });
 
 /*
