@@ -247,6 +247,15 @@ var generateCard = function (rentListElement) {
   }
 
   mapPins.insertAdjacentElement('afterend', cardElement);
+
+  // Добавление обработчика закрытия карточки
+  var popupCloseButton = document.querySelector('.popup__close');
+  popupCloseButton.addEventListener('click', removeCardPopups);
+  document.addEventListener('keydown', function (evt) {
+    if (evt.code === 'Escape') {
+      removeCardPopups();
+    }
+  });
 };
 
 
@@ -277,6 +286,15 @@ var addActivePinListener = function () {
       pins[x].addEventListener('click', function () {
         removeCardPopups();
         generateCard(rentList[x]);
+      });
+    })(i);
+
+    (function (x) {
+      pins[x].addEventListener('keydown', function (evt) {
+        if (evt.code === 'Enter') {
+          removeCardPopups();
+          generateCard(rentList[x]);
+        }
       });
     })(i);
   }
