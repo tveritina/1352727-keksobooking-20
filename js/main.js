@@ -16,6 +16,7 @@ var MAX_TITLE_LENGTH = 100;
 var MAX_PRICE_VALUE = 1000000;
 
 var mapPins = document.querySelector('.map__pins');
+var adressInput = document.querySelector('#address');
 var form = document.querySelector('.ad-form');
 var pin = document.querySelector('#pin')
   .content
@@ -175,7 +176,6 @@ mainMapPin.addEventListener('keydown', function (evt) {
 
 // Заполнение поля адреса
 var fillAddress = function () {
-  var adressInput = document.querySelector('#address');
   var mainPin = document.querySelector('.map__pin--main');
   var mainPinLocationTop = parseInt(mainPin.style.top, 10);
   var mainPinLocationLeft = parseInt(mainPin.style.left, 10);
@@ -350,3 +350,20 @@ var validatePriceByHomeType = function () {
     offerPrice.setCustomValidity('');
   }
 };
+
+// Ручное редактирование адреса запрещено
+adressInput.disabled = true;
+
+// Синхронизация времени заезда/выезда
+var checkinTime = document.querySelector('#timein');
+var checkoutTime = document.querySelector('#timeout');
+
+var syncCheckoutTime = function () {
+  checkoutTime.value = checkinTime.value;
+};
+var syncCheckinTime = function () {
+  checkinTime.value = checkoutTime.value;
+};
+
+checkinTime.addEventListener('change', syncCheckoutTime);
+checkoutTime.addEventListener('change', syncCheckinTime);
