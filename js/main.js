@@ -118,6 +118,7 @@ var generateOffersPins = function () {
 var activatePage = function () {
   activateMap();
   generateOffersPins();
+  addActivePinListener();
 };
 
 // Блокирует поля формы при открытии страницы
@@ -248,3 +249,18 @@ var generateCard = function (rentListElement) {
 generateCard(rentList[0]);
 */
 
+
+var addActivePinListener = function () {
+  var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+
+  for (var i = 0; i < pins.length; i++) {
+    pins[i].addEventListener('click', function(evt) {
+
+      for (var j = 0; j < pins.length; j++) {
+        pins[j].classList.remove('map__pin--active');
+      }
+
+      evt.currentTarget.classList.add('map__pin--active');
+    });
+  };
+};
