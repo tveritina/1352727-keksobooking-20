@@ -11,8 +11,12 @@ var PHOTOS = [
 ];
 var HALF_MAIN_PIN_X = 31;
 var MAIN_PIN_Y = 84;
+var MIN_TITLE_LENGTH = 30;
+var MAX_TITLE_LENGTH = 100;
+var MAX_PRICE_VALUE = 1000000;
 
 var mapPins = document.querySelector('.map__pins');
+var form = document.querySelector('.ad-form');
 var pin = document.querySelector('#pin')
   .content
   .querySelector('button');
@@ -144,7 +148,6 @@ var blockMapFilter = function (state) {
 blockMapFilter(true);
 
 var activateForm = function () {
-  var form = document.querySelector('.ad-form');
   form.classList.remove('ad-form--disabled');
 };
 
@@ -254,7 +257,7 @@ var addActivePinListener = function () {
   var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
   for (var i = 0; i < pins.length; i++) {
-    pins[i].addEventListener('click', function(evt) {
+    pins[i].addEventListener('click', function (evt) {
 
       for (var j = 0; j < pins.length; j++) {
         pins[j].classList.remove('map__pin--active');
@@ -264,3 +267,43 @@ var addActivePinListener = function () {
     });
   };
 };
+
+// Валидация заголовка
+var offerTitle = document.querySelector('#title');
+
+offerTitle.addEventListener('input', function () {
+  var valueLength = offerTitle.value.length;
+
+  if (valueLength < MIN_TITLE_LENGTH) {
+    offerTitle.setCustomValidity('Ещё ' + (MIN_TITLE_LENGTH - valueLength) + ' симв.');
+  } else if (valueLength > MAX_TITLE_LENGTH) {
+    offerTitle.setCustomValidity('Удалите лишние ' + (valueLength - MAX_TITLE_LENGTH) + ' симв.');
+  } else {
+    offerTitle.setCustomValidity('');
+  }
+});
+
+// Валидация цены
+var offerPrice = document.querySelector('#price');
+
+offerPrice.addEventListener('invalid', function () {
+  if (offerPrice.value.length === 0) {
+    offerPrice.setCustomValidity('Введите число');
+  }
+  else {
+    offerPrice.setCustomValidity('');
+  };
+});
+
+offerPrice.addEventListener('input', function () {
+  var parsedValue = parseInt(offerPrice.value, 10);
+
+  if (isNaN(parsedValue) === true) {
+    offerPrice.setCustomValidity('Введите число');
+  } else if (parsedValue > MAX_PRICE_VALUE) {
+    offerPrice.setCustomValidity('Значение не может быть больше 1 000 000');
+  } else {
+    offerPrice.setCustomValidity('');
+  }
+});
+
