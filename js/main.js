@@ -307,3 +307,46 @@ offerPrice.addEventListener('input', function () {
   }
 });
 
+
+// Валидация цены в зависимости от типа жилья
+var homeType = document.querySelector('#type');
+
+homeType.addEventListener('change', function () {
+  validatePriceByHomeType();
+});
+
+offerPrice.addEventListener('input', function () {
+  validatePriceByHomeType();
+});
+
+var validatePriceByHomeType = function () {
+  var typeValue = homeType.value;
+
+  switch (typeValue) {
+    case 'palace':
+      offerPrice.placeholder = '10000';
+      break;
+
+    case 'house':
+      offerPrice.placeholder = '5000';
+      break;
+
+    case 'flat':
+      offerPrice.placeholder = '1000';
+      break;
+
+    case 'bungalo':
+      offerPrice.placeholder = '0';
+      break;
+  }
+
+  if (typeValue === 'palace' && offerPrice.value < 10000) {
+    offerPrice.setCustomValidity('Минимальная цена 10 000');
+  } else if (typeValue === 'house' && offerPrice.value < 5000) {
+    offerPrice.setCustomValidity('Минимальная цена 5 000');
+  } else if (typeValue === 'flat' && offerPrice.value < 1000) {
+    offerPrice.setCustomValidity('Минимальная цена 1 000');
+  } else {
+    offerPrice.setCustomValidity('');
+  }
+};
