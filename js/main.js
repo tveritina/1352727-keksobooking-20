@@ -22,9 +22,9 @@ var pin = document.querySelector('#pin')
   .content
   .querySelector('button');
 
-// var card = document.querySelector('#card')
-//   .content
-//   .querySelector('article');
+var card = document.querySelector('#card')
+  .content
+  .querySelector('article');
 
 var getRandomFromList = function (array) {
   return array[Math.floor((Math.random() * array.length))];
@@ -207,7 +207,7 @@ var validateGuests = function () {
   }
 };
 
-/*
+
 var generateCard = function (rentListElement) {
   var cardElement = card.cloneNode(true);
 
@@ -220,7 +220,7 @@ var generateCard = function (rentListElement) {
   cardElement.querySelector('.popup__avatar').src = rentListElement.author.avatar;
 
   cardElement.querySelector('.popup__features').innerHTML = '';
-  for (i = 0; i < rentListElement.offer.features.length; i++) {
+  for (var i = 0; i < rentListElement.offer.features.length; i++) {
     var feature = '<li class="popup__feature popup__feature--' + rentListElement.offer.features[i] + '"></li>';
     cardElement.querySelector('.popup__features').insertAdjacentHTML('beforeend', feature);
   }
@@ -249,10 +249,15 @@ var generateCard = function (rentListElement) {
   mapPins.insertAdjacentElement('afterend', cardElement);
 };
 
-generateCard(rentList[0]);
-*/
 
+var removeCardPopups = function () {
+  var cardPopups = document.querySelectorAll('.map__card');
+  for (var i = 0; i < cardPopups.length; i++) {
+    cardPopups[i].remove();
+  }
+};
 
+// Добавление обработчика для добавления класса метки и генерации карточки
 var addActivePinListener = function () {
   var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
@@ -265,7 +270,16 @@ var addActivePinListener = function () {
 
       evt.currentTarget.classList.add('map__pin--active');
     });
-  };
+  }
+
+  for (i = 0; i < pins.length; i++) {
+    (function (x) {
+      pins[x].addEventListener('click', function () {
+        removeCardPopups();
+        generateCard(rentList[x]);
+      });
+    })(i);
+  }
 };
 
 // Валидация заголовка
@@ -289,10 +303,9 @@ var offerPrice = document.querySelector('#price');
 offerPrice.addEventListener('invalid', function () {
   if (offerPrice.value.length === 0) {
     offerPrice.setCustomValidity('Введите число');
-  }
-  else {
+  } else {
     offerPrice.setCustomValidity('');
-  };
+  }
 });
 
 offerPrice.addEventListener('input', function () {
