@@ -198,12 +198,12 @@ roomsSelect.addEventListener('change', function () {
 });
 
 var validateGuests = function () {
-  var capacityValue = parseInt(capacitySelect.value);
-  var roomsValue = parseInt(roomsSelect.value);
+  var capacityValue = parseInt(capacitySelect.value, 10);
+  var roomsValue = parseInt(roomsSelect.value, 10);
 
   if (capacityValue > roomsValue) {
     capacitySelect.setCustomValidity('Гостям будет тесно, выберите меньшее количество гостей');
-  } else if (roomsValue == 100 && capacityValue > 0 || roomsValue !== 100 && capacityValue == 0) {
+  } else if (roomsValue === 100 && capacityValue > 0 || roomsValue !== 100 && capacityValue === 0) {
     capacitySelect.setCustomValidity('Для 100 комнат доступен только вариант "Не для гостей"');
   } else {
     capacitySelect.setCustomValidity('');
