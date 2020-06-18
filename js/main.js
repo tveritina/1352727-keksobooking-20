@@ -198,10 +198,13 @@ roomsSelect.addEventListener('change', function () {
 });
 
 var validateGuests = function () {
-  if (capacitySelect.value > roomsSelect.value) {
+  var capacityValue = parseInt(capacitySelect.value);
+  var roomsValue = parseInt(roomsSelect.value);
+
+  if (capacityValue > roomsValue) {
     capacitySelect.setCustomValidity('Гостям будет тесно, выберите меньшее количество гостей');
-  } else if (roomsSelect.value === 100 && capacitySelect.value > 0 || roomsSelect.value !== 100 && capacitySelect.value === 0) {
-    capacitySelect.setCustomValidity('Для 100 комнат доступен только вариант Не для гостей');
+  } else if (roomsValue == 100 && capacityValue > 0 || roomsValue !== 100 && capacityValue == 0) {
+    capacitySelect.setCustomValidity('Для 100 комнат доступен только вариант "Не для гостей"');
   } else {
     capacitySelect.setCustomValidity('');
   }
