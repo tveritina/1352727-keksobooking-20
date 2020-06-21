@@ -8,56 +8,57 @@
 
   var rentList = window.rentList;
 
-  window.generateOffersPins = function () {
-    var fragment = document.createDocumentFragment();
+  window.pin = {
+    generateOffersPins: function () {
+      var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < rentList.length; i++) {
-      var element = pin.cloneNode(true);
-      var pinImg = element.querySelector('img');
+      for (var i = 0; i < rentList.length; i++) {
+        var element = pin.cloneNode(true);
+        var pinImg = element.querySelector('img');
 
-      element.style.left = rentList[i].location.x + 'px';
-      element.style.top = rentList[i].location.y + 'px';
-      pinImg.src = rentList[i].author.avatar;
-      pinImg.alt = rentList[i].offer.title;
+        element.style.left = rentList[i].location.x + 'px';
+        element.style.top = rentList[i].location.y + 'px';
+        pinImg.src = rentList[i].author.avatar;
+        pinImg.alt = rentList[i].offer.title;
 
-      fragment.appendChild(element);
-    }
+        fragment.appendChild(element);
+      }
 
-    mapPins.appendChild(fragment);
-  };
+      mapPins.appendChild(fragment);
+    },
 
-  // Добавление обработчика для добавления класса метки и генерации карточки
-  window.addActivePinListener = function () {
-    var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+    // Добавление обработчика для добавления класса метки и генерации карточки
+    addActivePinListener: function () {
+      var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
-    for (var i = 0; i < pins.length; i++) {
-      pins[i].addEventListener('click', function (evt) {
+      for (var i = 0; i < pins.length; i++) {
+        pins[i].addEventListener('click', function (evt) {
 
-        for (var j = 0; j < pins.length; j++) {
-          pins[j].classList.remove('map__pin--active');
-        }
-
-        evt.currentTarget.classList.add('map__pin--active');
-      });
-    }
-
-    for (i = 0; i < pins.length; i++) {
-      (function (x) {
-        pins[x].addEventListener('click', function () {
-          window.removeCardPopups();
-          window.generateCard(rentList[x]);
-        });
-      })(i);
-
-      (function (x) {
-        pins[x].addEventListener('keydown', function (evt) {
-          if (evt.code === 'Enter') {
-            window.removeCardPopups();
-            window.generateCard(rentList[x]);
+          for (var j = 0; j < pins.length; j++) {
+            pins[j].classList.remove('map__pin--active');
           }
-        });
-      })(i);
-    }
-  };
 
+          evt.currentTarget.classList.add('map__pin--active');
+        });
+      }
+
+      for (i = 0; i < pins.length; i++) {
+        (function (x) {
+          pins[x].addEventListener('click', function () {
+            window.card.removeCardPopups();
+            window.card.generateCard(rentList[x]);
+          });
+        })(i);
+
+        (function (x) {
+          pins[x].addEventListener('keydown', function (evt) {
+            if (evt.code === 'Enter') {
+              window.card.removeCardPopups();
+              window.card.generateCard(rentList[x]);
+            }
+          });
+        })(i);
+      }
+    }
+  }
 })();

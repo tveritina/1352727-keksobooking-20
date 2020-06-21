@@ -68,7 +68,6 @@
     }
   });
 
-
   // Валидация цены в зависимости от типа жилья
   var homeType = document.querySelector('#type');
 
