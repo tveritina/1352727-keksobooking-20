@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
   var FLAT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
   var CHECKIN_TIME = ['12:00', '13:00', '14:00'];
   var CHECKOUT_TIME = ['12:00', '13:00', '14:00'];
@@ -55,7 +54,7 @@
 
   var generateRentList = function () {
     for (var i = 0; i < 8; i++) {
-      rentList[i] = {
+      window.rentList[i] = {
         author: {
           avatar: 'img/avatars/user0' + (i + 1) + '.png',
         },
