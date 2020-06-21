@@ -33,7 +33,7 @@
   window.offerForm.fillAddress();
 
   // Ручное редактирование адреса запрещено
-  adressInput.disabled = true;
+  adressInput.readOnly = true;
 
   // Синхронизация времени заезда/выезда
   var checkinTime = document.querySelector('#timein');
