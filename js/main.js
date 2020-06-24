@@ -25,4 +25,11 @@
 
   mainMapPin.addEventListener('mousedown', onMouseDownActivateMap);
   mainMapPin.addEventListener('keydown', onMouseDownActivateMap);
+
+  window.main = {
+    halfMainPinWidth: 31,
+    mainPinHeight: 84,
+    minMainPinYCoord: 130,
+    maxMainPinYCoord: 630
+  };
 })();

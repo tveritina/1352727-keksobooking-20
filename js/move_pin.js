@@ -1,8 +1,5 @@
 'use strict';
 (function () {
-  var HALF_MAIN_PIN_X = 31;
-  var MAIN_PIN_Y = 84;
-
   var mainMapPin = document.querySelector('.map__pin--main');
 
   mainMapPin.addEventListener('mousedown', function (evt) {
@@ -27,14 +24,14 @@
       };
 
       // Координаты острого края метки
-      var currentXmapPin = mainMapPin.offsetLeft - shift.x + HALF_MAIN_PIN_X;
-      var currentYmapPin = mainMapPin.offsetTop - shift.y + MAIN_PIN_Y;
+      var currentXmapPin = mainMapPin.offsetLeft - shift.x + window.main.halfMainPinWidth;
+      var currentYmapPin = mainMapPin.offsetTop - shift.y + window.main.mainPinHeight;
 
-      if (currentYmapPin <= 630 && currentYmapPin >= 130) {
+      if (currentYmapPin >= window.main.minMainPinYCoord && currentYmapPin <= window.main.maxMainPinYCoord) {
         mainMapPin.style.top = (mainMapPin.offsetTop - shift.y) + 'px';
       };
 
-      if (currentXmapPin <= 1200 && currentXmapPin >= 0) {
+      if (currentXmapPin >= 0 && currentXmapPin <= window.map.getMapPinsWidth()) {
         mainMapPin.style.left = (mainMapPin.offsetLeft - shift.x) + 'px';
       };
 
