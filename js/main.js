@@ -11,23 +11,18 @@
   // Активация страницы и разблокировка
   var mainMapPin = document.querySelector('.map__pin--main');
 
-  mainMapPin.addEventListener('mousedown', function (evt) {
-    if (evt.button === 0) {
+  var onMouseDownActivateMap = function (evt) {
+    if (evt.button === 0 || evt.code === 'Enter') {
       activatePage();
       window.map.blockMapFilter(false);
       window.offerForm.blockFormFilter(false);
       window.offerForm.fillAddress();
       window.offerForm.activateForm();
-    }
-  });
+      mainMapPin.removeEventListener('mousedown', onMouseDownActivateMap)
+      mainMapPin.removeEventListener('keydown', onMouseDownActivateMap)
+    };
+  };
 
-  mainMapPin.addEventListener('keydown', function (evt) {
-    if (evt.code === 'Enter') {
-      activatePage();
-      window.map.blockMapFilter(false);
-      window.offerForm.blockFormFilter(false);
-      window.offerForm.fillAddress();
-      window.offerForm.activateForm();
-    }
-  });
+  mainMapPin.addEventListener('mousedown', onMouseDownActivateMap);
+  mainMapPin.addEventListener('keydown', onMouseDownActivateMap);
 })();
