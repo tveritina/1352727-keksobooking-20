@@ -1,5 +1,7 @@
 'use strict';
 (function () {
+  var HALF_MAIN_PIN_X = 31;
+  var MAIN_PIN_Y = 84;
 
   var mainMapPin = document.querySelector('.map__pin--main');
 
@@ -24,8 +26,18 @@
         y: moveEvt.clientY
       };
 
-      mainMapPin.style.top = (mainMapPin.offsetTop - shift.y) + 'px';
-      mainMapPin.style.left = (mainMapPin.offsetLeft - shift.x) + 'px';
+      // Координаты острого края метки
+      var currentXmapPin = mainMapPin.offsetLeft - shift.x + HALF_MAIN_PIN_X;
+      var currentYmapPin = mainMapPin.offsetTop - shift.y + MAIN_PIN_Y;
+
+      if (currentYmapPin <= 630 && currentYmapPin >= 130) {
+        mainMapPin.style.top = (mainMapPin.offsetTop - shift.y) + 'px';
+      };
+
+      if (currentXmapPin <= 1200 && currentXmapPin >= 0) {
+        mainMapPin.style.left = (mainMapPin.offsetLeft - shift.x) + 'px';
+      };
+
       window.offerForm.fillAddress();
     };
 
