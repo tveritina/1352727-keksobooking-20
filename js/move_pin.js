@@ -29,11 +29,11 @@
 
       if (currentYmapPin >= window.main.minMainPinYCoord && currentYmapPin <= window.main.maxMainPinYCoord) {
         mainMapPin.style.top = (mainMapPin.offsetTop - shift.y) + 'px';
-      };
+      }
 
       if (currentXmapPin >= 0 && currentXmapPin <= window.map.getMapPinsWidth()) {
         mainMapPin.style.left = (mainMapPin.offsetLeft - shift.x) + 'px';
-      };
+      }
 
       window.offerForm.fillAddress();
     };

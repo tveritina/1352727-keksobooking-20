@@ -18,9 +18,9 @@
       window.offerForm.blockFormFilter(false);
       window.offerForm.fillAddress();
       window.offerForm.activateForm();
-      mainMapPin.removeEventListener('mousedown', onMouseDownActivateMap)
-      mainMapPin.removeEventListener('keydown', onMouseDownActivateMap)
-    };
+      mainMapPin.removeEventListener('mousedown', onMouseDownActivateMap);
+      mainMapPin.removeEventListener('keydown', onMouseDownActivateMap);
+    }
   };
 
   mainMapPin.addEventListener('mousedown', onMouseDownActivateMap);
