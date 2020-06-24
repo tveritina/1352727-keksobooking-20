@@ -26,7 +26,7 @@
 
       mainMapPin.style.top = (mainMapPin.offsetTop - shift.y) + 'px';
       mainMapPin.style.left = (mainMapPin.offsetLeft - shift.x) + 'px';
-
+      window.offerForm.fillAddress();
     };
 
     var onMouseUp = function (upEvt) {
