@@ -1,9 +1,6 @@
 'use strict';
 
 (function () {
-  var HALF_MAIN_PIN_X = 31;
-  var MAIN_PIN_Y = 84;
-
   var form = document.querySelector('.ad-form');
   var adressInput = document.querySelector('#address');
 
@@ -18,7 +15,10 @@
       var mainPinLocationTop = parseInt(mainPin.style.top, 10);
       var mainPinLocationLeft = parseInt(mainPin.style.left, 10);
 
-      adressInput.value = (Math.round(mainPinLocationTop + MAIN_PIN_Y)) + ', ' + (Math.round(mainPinLocationLeft + HALF_MAIN_PIN_X));
+      adressInput.value =
+        (Math.round(mainPinLocationLeft + window.main.halfMainPinWidth)) +
+        ', ' +
+        (Math.round(mainPinLocationTop + window.main.mainPinHeight));
     },
 
     // Блокирует поля формы при открытии страницы

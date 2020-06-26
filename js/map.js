@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
   window.map = {
     activateMap: function () {
       var map = document.querySelector('.map');
@@ -18,6 +17,11 @@
       }
 
       mapFeaturesFilter.disabled = state;
+    },
+
+    getMapPinsWidth: function () {
+      var mapPins = document.querySelector('.map__pins');
+      return mapPins.offsetWidth;
     }
   };
 

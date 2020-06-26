@@ -32,10 +32,6 @@
     }
   };
 
-  var getElementWidth = function (element) {
-    return element.offsetWidth;
-  };
-
   var generateRandomArray = function (array) {
     var result = [];
     var resultLength = getRandomNumber(1, array.length);
@@ -47,8 +43,6 @@
 
     return result;
   };
-
-  var mapPins = document.querySelector('.map__pins');
 
   window.rentList = [];
 
@@ -72,8 +66,8 @@
           photos: generateRandomArray(PHOTOS),
         },
         location: {
-          x: getRandomInt(getElementWidth(mapPins)),
-          y: getRandomNumber(130, 630),
+          x: getRandomInt(window.map.getMapPinsWidth()),
+          y: getRandomNumber(window.main.minMainPinYCoord, window.main.maxMainPinYCoord),
         }
       };
     }
