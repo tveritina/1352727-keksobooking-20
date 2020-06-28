@@ -28,6 +28,7 @@
 
     // Добавление обработчика для добавления класса метки и генерации карточки
     addActivePinListener: function () {
+      var rentList = window.rentList;
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
       for (var i = 0; i < pins.length; i++) {
