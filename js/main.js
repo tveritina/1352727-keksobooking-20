@@ -3,10 +3,8 @@
 (function () {
   // Активация страницы
   var activatePage = function () {
-    window.data.getOffers();
     window.map.activateMap();
-    window.pin.generateOffersPins();
-    window.pin.addActivePinListener();
+    window.data.getOffers();
   };
 
   // Активация страницы и разблокировка
