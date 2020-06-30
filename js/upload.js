@@ -11,9 +11,9 @@
       if (xhr.status === 200) {
         onSuccess();
       } else {
-          onError();
-        }
-      });
+        onError();
+      }
+    });
 
     xhr.open('POST', URL);
     xhr.send(data);
