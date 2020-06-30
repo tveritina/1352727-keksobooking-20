@@ -51,7 +51,29 @@
   };
 
   checkinTime.addEventListener('change', syncCheckoutTime);
-  checkoutTime.addEventListener('change', syncCheckinTime); 
+  checkoutTime.addEventListener('change', syncCheckinTime);
+  
+  var showSuccessSentModal = function () {
+    var mainElement = document.querySelector('main');
+    var modal = document.querySelector('#success')
+    .content
+    .querySelector('.success')
+    .cloneNode(true);;
+
+    mainElement.appendChild(modal);
+    document.addEventListener('click', onClickOrEscapeCloseSuccessSentModal)
+    document.addEventListener('keydown', onClickOrEscapeCloseSuccessSentModal)
+  };
+
+  var onClickOrEscapeCloseSuccessSentModal = function (evt) {
+    if(evt.button === 0 ||  evt.code === 'Escape') {
+      var modal = document.querySelector('.success');
+      modal.remove();
+    }
+    
+    document.removeEventListener('click', onClickOrEscapeCloseSuccessSentModal)
+    document.removeEventListener('keydown', onClickOrEscapeCloseSuccessSentModal)
+  };
   
   form.addEventListener('submit', function (evt) {
     window.upload(new FormData(form), function (response) {
@@ -70,6 +92,7 @@
       window.movePin.toDefaultCoordinates();
       window.offerForm.fillAddress();
       window.main.addActivateMainPinListener();
+      showSuccessSentModal();
     });
     evt.preventDefault();
   });
