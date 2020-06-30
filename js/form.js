@@ -9,6 +9,10 @@
       form.classList.remove('ad-form--disabled');
     },
 
+    deactivateForm: function () {
+      form.classList.add('ad-form--disabled');
+    },
+
     // Заполнение поля адреса
     fillAddress: function () {
       var mainPin = document.querySelector('.map__pin--main');
@@ -51,7 +55,21 @@
   
   form.addEventListener('submit', function (evt) {
     window.upload(new FormData(form), function (response) {
-      alert(response);
+      console.log('ok');
+
+      window.card.removeCardPopups();
+      window.pin.removePins();
+      
+      window.map.deactivateMap();
+      window.map.blockMapFilter(true);
+
+      form.reset();
+      window.offerForm.blockFormFilter(true);
+      window.offerForm.deactivateForm();
+
+      window.movePin.toDefaultCoordinates();
+      window.offerForm.fillAddress();
+      window.main.addActivateMainPinListener();
     });
     evt.preventDefault();
   });

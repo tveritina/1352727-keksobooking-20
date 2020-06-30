@@ -8,7 +8,9 @@
       xhr.responseType = 'json';
       
       xhr.addEventListener('load', function () {
-        onSuccess(xhr.response);
+        if (xhr.status === 200) {
+          onSuccess(xhr.response);
+        }
       });
       
       xhr.open('POST', URL);
