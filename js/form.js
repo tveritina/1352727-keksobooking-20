@@ -47,5 +47,12 @@
   };
 
   checkinTime.addEventListener('change', syncCheckoutTime);
-  checkoutTime.addEventListener('change', syncCheckinTime);
+  checkoutTime.addEventListener('change', syncCheckinTime); 
+  
+  form.addEventListener('submit', function (evt) {
+    window.upload(new FormData(form), function (response) {
+      alert(response);
+    });
+    evt.preventDefault();
+  });
 })();
