@@ -3,6 +3,7 @@
 (function () {
   var form = document.querySelector('.ad-form');
   var adressInput = document.querySelector('#address');
+  var resetFormButton = document.querySelector('.ad-form__reset');
 
   window.offerForm = {
     activateForm: function () {
@@ -54,6 +55,12 @@
   checkinTime.addEventListener('change', syncCheckoutTime);
   checkoutTime.addEventListener('change', syncCheckinTime);
 
+  resetFormButton.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    form.reset();
+    window.offerForm.fillAddress();
+  });
+
   var showSuccessSentModal = function () {
     var mainElement = document.querySelector('main');
     var modal = document.querySelector('#success')
@@ -86,10 +93,6 @@
 
     var errorButton = modal.querySelector('.error__button');
     errorButton.addEventListener('click', onClickRepeatButtonCloseErrorSentModal);
-  }
-
-  var onClickRepeatButtonCloseErrorSentModal = function () {
-    removeModalByClass('.error');
   };
 
   var onClickOrEscapeCloseErrorSentModal = function (evt) {
@@ -99,12 +102,16 @@
     }
   };
 
+  var onClickRepeatButtonCloseErrorSentModal = function () {
+    removeModalByClass('.error');
+  };
+
   var removeModalByClass = function (cssClass) {
     var modal = document.querySelector(cssClass);
     modal.remove();
   };
 
-  var onSuccessSent = function () {
+  var deactivatePageAndResetform = function () {
     window.card.removeCardPopups();
     window.pin.removePins();
 
@@ -118,6 +125,10 @@
     window.movePin.toDefaultCoordinates();
     window.offerForm.fillAddress();
     window.main.addActivateMainPinListener();
+  };
+
+  var onSuccessSent = function () {
+    deactivatePageAndResetform();
     showSuccessSentModal();
   };
 
