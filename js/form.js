@@ -69,14 +69,14 @@
       .cloneNode(true);
 
     mainElement.appendChild(modal);
-    modal.addEventListener('click', onClickOrEscapeCloseSuccessSentModal)
-    document.addEventListener('keydown', onClickOrEscapeCloseSuccessSentModal)
+    modal.addEventListener('click', onClickOrEscapeCloseSuccessSentModal);
+    document.addEventListener('keydown', onClickOrEscapeCloseSuccessSentModal);
   };
 
   var onClickOrEscapeCloseSuccessSentModal = function (evt) {
     if (evt.button === 0 || evt.code === 'Escape') {
       removeModalByClass('.success');
-      document.removeEventListener('keydown', onClickOrEscapeCloseSuccessSentModal)
+      document.removeEventListener('keydown', onClickOrEscapeCloseSuccessSentModal);
     }
   };
 
@@ -88,8 +88,8 @@
       .cloneNode(true);
 
     mainElement.appendChild(modal);
-    modal.addEventListener('click', onClickOrEscapeCloseErrorSentModal)
-    document.addEventListener('keydown', onClickOrEscapeCloseErrorSentModal)
+    modal.addEventListener('click', onClickOrEscapeCloseErrorSentModal);
+    document.addEventListener('keydown', onClickOrEscapeCloseErrorSentModal);
 
     var errorButton = modal.querySelector('.error__button');
     errorButton.addEventListener('click', onClickRepeatButtonCloseErrorSentModal);
@@ -98,7 +98,7 @@
   var onClickOrEscapeCloseErrorSentModal = function (evt) {
     if (evt.button === 0 || evt.code === 'Escape') {
       removeModalByClass('.error');
-      document.removeEventListener('keydown', onClickOrEscapeCloseErrorSentModal)
+      document.removeEventListener('keydown', onClickOrEscapeCloseErrorSentModal);
     }
   };
 
