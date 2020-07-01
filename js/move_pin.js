@@ -48,4 +48,11 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  window.movePin = {
+    toDefaultCoordinates: function () {
+      mainMapPin.style.top = window.main.defaultMainPinTopCoord + 'px';
+      mainMapPin.style.left = window.main.defaultMainPinLeftCoord + 'px';
+    }
+  };
 })();

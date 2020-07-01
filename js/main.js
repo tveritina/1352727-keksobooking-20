@@ -29,6 +29,12 @@
     halfMainPinWidth: 31,
     mainPinHeight: 84,
     minMainPinYCoord: 130,
-    maxMainPinYCoord: 630
+    maxMainPinYCoord: 630,
+    defaultMainPinLeftCoord: 570,
+    defaultMainPinTopCoord: 375,
+    addActivateMainPinListener: function () {
+      mainMapPin.addEventListener('mousedown', onMouseDownActivateMap);
+      mainMapPin.addEventListener('keydown', onMouseDownActivateMap);
+    }
   };
 })();

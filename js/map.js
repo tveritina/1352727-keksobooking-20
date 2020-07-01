@@ -1,10 +1,15 @@
 'use strict';
 
 (function () {
+  var map = document.querySelector('.map');
+
   window.map = {
     activateMap: function () {
-      var map = document.querySelector('.map');
       map.classList.remove('map--faded');
+    },
+
+    deactivateMap: function () {
+      map.classList.add('map--faded');
     },
 
     // Блокировка фильтра

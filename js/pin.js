@@ -59,6 +59,14 @@
           });
         })(i);
       }
+    },
+
+    // Удаление меток после отправки формы
+    removePins: function () {
+      var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+      pins.forEach(function (item) {
+        item.remove();
+      });
     }
   };
 })();
