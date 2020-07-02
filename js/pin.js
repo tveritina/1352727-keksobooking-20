@@ -21,8 +21,8 @@
   };
 
   window.pin = {
-    generateOffersPins: function () {
-      var rentList = window.rentList;
+    generateOffersPins: function (offers) {
+      var rentList = offers;
       var fragment = document.createDocumentFragment();
 
       var offersCount = rentList.length > MAX_PINS_COUNT ? MAX_PINS_COUNT : rentList.length;
@@ -35,8 +35,8 @@
     },
 
     // Добавление обработчика для добавления класса метки и генерации карточки
-    addActivePinListener: function () {
-      var rentList = window.rentList;
+    addActivePinListener: function (offers) {
+      var rentList = offers;
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
       for (var i = 0; i < pins.length; i++) {
