@@ -7,7 +7,7 @@
     window.rentList = data;
 
     window.pin.generateOffersPins();
-    window.pin.addActivePinListener();
+    // window.pin.addActivePinListener();
   };
 
   window.data = {

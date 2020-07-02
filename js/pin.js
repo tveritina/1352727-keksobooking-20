@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var MAX_PINS_COUNT = 5;
+
   var mapPins = document.querySelector('.map__pins');
   var pin = document.querySelector('#pin')
     .content
@@ -11,7 +13,9 @@
       var rentList = window.rentList;
       var fragment = document.createDocumentFragment();
 
-      for (var i = 0; i < rentList.length; i++) {
+      var offersCount = rentList.length > MAX_PINS_COUNT ? MAX_PINS_COUNT : rentList.length;
+
+      for (var i = 0; i < offersCount; i++) {
         var element = pin.cloneNode(true);
         var pinImg = element.querySelector('img');
 
