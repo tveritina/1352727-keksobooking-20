@@ -8,6 +8,18 @@
     .content
     .querySelector('button');
 
+  var renderPin = function (offer) {
+    var element = pin.cloneNode(true);
+    var pinImg = element.querySelector('img');
+
+    element.style.left = offer.location.x + 'px';
+    element.style.top = offer.location.y + 'px';
+    pinImg.src = offer.author.avatar;
+    pinImg.alt = offer.offer.title;
+
+    return element;
+  };
+
   window.pin = {
     generateOffersPins: function () {
       var rentList = window.rentList;
@@ -16,15 +28,7 @@
       var offersCount = rentList.length > MAX_PINS_COUNT ? MAX_PINS_COUNT : rentList.length;
 
       for (var i = 0; i < offersCount; i++) {
-        var element = pin.cloneNode(true);
-        var pinImg = element.querySelector('img');
-
-        element.style.left = rentList[i].location.x + 'px';
-        element.style.top = rentList[i].location.y + 'px';
-        pinImg.src = rentList[i].author.avatar;
-        pinImg.alt = rentList[i].offer.title;
-
-        fragment.appendChild(element);
+        fragment.appendChild(renderPin(rentList[i]));
       }
 
       mapPins.appendChild(fragment);
