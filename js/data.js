@@ -6,8 +6,8 @@
   var onSuccess = function (data) {
     window.rentList = data;
 
-    window.pin.generateOffersPins();
-    window.pin.addActivePinListener();
+    window.pin.generateOffersPins(window.rentList);
+    window.pin.addActivePinListener(window.rentList);
   };
 
   window.data = {

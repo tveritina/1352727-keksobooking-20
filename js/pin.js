@@ -1,34 +1,42 @@
 'use strict';
 
 (function () {
+  var MAX_PINS_COUNT = 5;
+
   var mapPins = document.querySelector('.map__pins');
   var pin = document.querySelector('#pin')
     .content
     .querySelector('button');
 
+  var renderPin = function (offer) {
+    var element = pin.cloneNode(true);
+    var pinImg = element.querySelector('img');
+
+    element.style.left = offer.location.x + 'px';
+    element.style.top = offer.location.y + 'px';
+    pinImg.src = offer.author.avatar;
+    pinImg.alt = offer.offer.title;
+
+    return element;
+  };
+
   window.pin = {
-    generateOffersPins: function () {
-      var rentList = window.rentList;
+    generateOffersPins: function (offers) {
+      var rentList = offers;
       var fragment = document.createDocumentFragment();
 
-      for (var i = 0; i < rentList.length; i++) {
-        var element = pin.cloneNode(true);
-        var pinImg = element.querySelector('img');
+      var offersCount = rentList.length > MAX_PINS_COUNT ? MAX_PINS_COUNT : rentList.length;
 
-        element.style.left = rentList[i].location.x + 'px';
-        element.style.top = rentList[i].location.y + 'px';
-        pinImg.src = rentList[i].author.avatar;
-        pinImg.alt = rentList[i].offer.title;
-
-        fragment.appendChild(element);
+      for (var i = 0; i < offersCount; i++) {
+        fragment.appendChild(renderPin(rentList[i]));
       }
 
       mapPins.appendChild(fragment);
     },
 
     // Добавление обработчика для добавления класса метки и генерации карточки
-    addActivePinListener: function () {
-      var rentList = window.rentList;
+    addActivePinListener: function (offers) {
+      var rentList = offers;
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
       for (var i = 0; i < pins.length; i++) {
