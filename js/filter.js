@@ -59,18 +59,20 @@
   };
 
   var onFilterChange = function () {
-    filteredOffers = window.rentList;
+    window.debounce(function () {
+      filteredOffers = window.rentList;
 
-    filteredOffers = filteredOffers.filter(filterByType);
-    filteredOffers = filteredOffers.filter(filterByPrice);
-    filteredOffers = filteredOffers.filter(filterByRooms);
-    filteredOffers = filteredOffers.filter(filterByGuests);
-    filteredOffers = filteredOffers.filter(filterByFeatures);
+      filteredOffers = filteredOffers.filter(filterByType);
+      filteredOffers = filteredOffers.filter(filterByPrice);
+      filteredOffers = filteredOffers.filter(filterByRooms);
+      filteredOffers = filteredOffers.filter(filterByGuests);
+      filteredOffers = filteredOffers.filter(filterByFeatures);
 
-    window.card.removeCardPopups();
-    window.pin.removePins();
-    window.pin.generateOffersPins(filteredOffers);
-    window.pin.addActivePinListener(filteredOffers);
+      window.card.removeCardPopups();
+      window.pin.removePins();
+      window.pin.generateOffersPins(filteredOffers);
+      window.pin.addActivePinListener(filteredOffers);
+    });
   };
 
   filter.addEventListener('change', onFilterChange);
