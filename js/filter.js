@@ -46,7 +46,16 @@
       case priceRange.type.high:
         return item.offer.price > priceRange.value.max;
     }
+
     return item;
+  };
+
+  var filterByFeatures = function (item) {
+    var selectedFeatures = featuresFilter.querySelectorAll('input:checked');
+
+    return Array.from(selectedFeatures).every(function (feature) {
+      return item.offer.features.includes(feature.value);
+    });
   };
 
   var onFilterChange = function () {
@@ -56,6 +65,7 @@
     filteredOffers = filteredOffers.filter(filterByPrice);
     filteredOffers = filteredOffers.filter(filterByRooms);
     filteredOffers = filteredOffers.filter(filterByGuests);
+    filteredOffers = filteredOffers.filter(filterByFeatures);
 
     window.card.removeCardPopups();
     window.pin.removePins();
