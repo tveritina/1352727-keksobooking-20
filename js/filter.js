@@ -29,6 +29,10 @@
     return filterItems(houseTypeFilter, item.offer, 'type');
   };
 
+  var filterByRooms = function (item) {
+    return filterItems(roomsFilter, item.offer, 'rooms');
+  };
+
   var filterByPrice = function (item) {
     switch (priceFilter.value) {
       case priceRange.type.low:
@@ -46,6 +50,7 @@
 
     filteredOffers = filteredOffers.filter(filterByType);
     filteredOffers = filteredOffers.filter(filterByPrice);
+    filteredOffers = filteredOffers.filter(filterByRooms);
 
     window.card.removeCardPopups();
     window.pin.removePins();
