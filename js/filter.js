@@ -15,24 +15,37 @@
 
   var filteredOffers = [];
   var filter = document.querySelector('.map__filters');
-  var houseTypeSelect = document.querySelector('#housing-type');
-  var priceSelect = document.querySelector('#housing-price');
-  var roomsSelect = document.querySelector('#housing-rooms');
-  var guestsSelect = document.querySelector('#housing-guests');
-  var featuresFieldset = document.querySelector('#housing-features');
+  var houseTypeFilter = document.querySelector('#housing-type');
+  var priceFilter = document.querySelector('#housing-price');
+  var roomsFilter = document.querySelector('#housing-rooms');
+  var guestsFilter = document.querySelector('#housing-guests');
+  var featuresFilter = document.querySelector('#housing-features');
 
   var filterItems = function (item, offer, key) {
     return item.value === 'any' ? true : item.value === offer[key].toString();
   };
 
   var filterByType = function (item) {
-    return filterItems(houseTypeSelect, item.offer, 'type');
+    return filterItems(houseTypeFilter, item.offer, 'type');
+  };
+
+  var filterByPrice = function (item) {
+    switch (priceFilter.value) {
+      case priceRange.type.low:
+        return item.offer.price < priceRange.value.min;
+      case priceRange.type.middle:
+        return item.offer.price >= priceRange.value.min && item.offer.price <= priceRange.value.max;
+      case priceRange.type.high:
+        return item.offer.price > priceRange.value.max;
+    }
+    return item;
   };
 
   var onFilterChange = function () {
     filteredOffers = window.rentList;
 
     filteredOffers = filteredOffers.filter(filterByType);
+    filteredOffers = filteredOffers.filter(filterByPrice);
 
     window.card.removeCardPopups();
     window.pin.removePins();
