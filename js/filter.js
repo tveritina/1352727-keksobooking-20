@@ -25,23 +25,20 @@
     return item.value === 'any' ? true : item.value === offer[key].toString();
   };
 
-  var filterByType = function () {
-    var typeValue = houseTypeFilter.value;
+  var filterByType = function (item) {
+    return filterItems(houseTypeSelect, item.offer, 'type');
+  };
 
-    filteredOffers = window.rentList.filter(function (item) {
-      if (typeValue === 'any') {
-        return window.rentList;
-      } else {
-        return item.offer.type === typeValue;
-      }
-    });
+  var onFilterChange = function () {
+    filteredOffers = window.rentList;
+
+    filteredOffers = filteredOffers.filter(filterByType);
 
     window.card.removeCardPopups();
-
     window.pin.removePins();
     window.pin.generateOffersPins(filteredOffers);
     window.pin.addActivePinListener(filteredOffers);
   };
 
-  houseTypeFilter.addEventListener('change', filterByType);
+  filter.addEventListener('change', onFilterChange);
 })();
