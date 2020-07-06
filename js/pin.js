@@ -22,13 +22,12 @@
 
   window.pin = {
     generateOffersPins: function (offers) {
-      var rentList = offers;
       var fragment = document.createDocumentFragment();
 
-      var offersCount = rentList.length > MAX_PINS_COUNT ? MAX_PINS_COUNT : rentList.length;
+      var offersCount = offers.length > MAX_PINS_COUNT ? MAX_PINS_COUNT : offers.length;
 
       for (var i = 0; i < offersCount; i++) {
-        fragment.appendChild(renderPin(rentList[i]));
+        fragment.appendChild(renderPin(offers[i]));
       }
 
       mapPins.appendChild(fragment);
@@ -36,7 +35,6 @@
 
     // Добавление обработчика для добавления класса метки и генерации карточки
     addActivePinListener: function (offers) {
-      var rentList = offers;
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
       for (var i = 0; i < pins.length; i++) {
@@ -54,7 +52,7 @@
         (function (x) {
           pins[x].addEventListener('click', function () {
             window.card.removeCardPopups();
-            window.card.generateCard(rentList[x]);
+            window.card.generateCard(offers[x]);
           });
         })(i);
 
@@ -62,7 +60,7 @@
           pins[x].addEventListener('keydown', function (evt) {
             if (evt.code === 'Enter') {
               window.card.removeCardPopups();
-              window.card.generateCard(rentList[x]);
+              window.card.generateCard(offers[x]);
             }
           });
         })(i);

@@ -1,13 +1,13 @@
 'use strict';
 
 (function () {
-  window.rentList = [];
+  window.offers = [];
 
   var onSuccess = function (data) {
-    window.rentList = data;
+    window.offers = data;
 
-    window.pin.generateOffersPins(window.rentList);
-    window.pin.addActivePinListener(window.rentList);
+    window.pin.generateOffersPins(window.offers);
+    window.pin.addActivePinListener(window.offers);
   };
 
   window.data = {
