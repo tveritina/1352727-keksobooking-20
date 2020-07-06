@@ -48,22 +48,25 @@
         });
       }
 
-      for (i = 0; i < pins.length; i++) {
-        (function (x) {
-          pins[x].addEventListener('click', function () {
-            window.card.removeCardPopups();
-            window.card.generateCard(offers[x]);
-          });
-        })(i);
+      var onClickGenerateCard = function (element, data) {
+        element.addEventListener('click', function () {
+          window.card.removeCardPopups();
+          window.card.generateCard(data);
+        });
+      };
 
-        (function (x) {
-          pins[x].addEventListener('keydown', function (evt) {
-            if (evt.code === 'Enter') {
-              window.card.removeCardPopups();
-              window.card.generateCard(offers[x]);
-            }
-          });
-        })(i);
+      var onKeydownGenerateCard = function (element, data) {
+        element.addEventListener('keydown', function (evt) {
+          if (evt.code === 'Enter') {
+            window.card.removeCardPopups();
+            window.card.generateCard(data);
+          }
+        });
+      };
+
+      for (i = 0; i < pins.length; i++) {
+        onClickGenerateCard(pins[i], offers[i]);
+        onKeydownGenerateCard(pins[i], offers[i]);
       }
     },
 
