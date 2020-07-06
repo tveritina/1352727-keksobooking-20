@@ -24,16 +24,17 @@
       var mainPinLocationTop = parseInt(mainPin.style.top, 10);
       var mainPinLocationLeft = parseInt(mainPin.style.left, 10);
 
+      var fillAddressValue = function (mainPinWidth, mainPinHeight) {
+        adressInput.value =
+          (Math.round(mainPinLocationLeft + mainPinWidth)) +
+          ', ' +
+          (Math.round(mainPinLocationTop + mainPinHeight));
+      };
+
       if (isActiveForm()) {
-        adressInput.value =
-          (Math.round(mainPinLocationLeft + window.main.halfActiveMainPinWidth)) +
-          ', ' +
-          (Math.round(mainPinLocationTop + window.main.activeMainPinHeight));
+        fillAddressValue(window.main.halfActiveMainPinWidth, window.main.activeMainPinHeight);
       } else {
-        adressInput.value =
-          (Math.round(mainPinLocationLeft + window.main.halfActiveMainPinWidth)) +
-          ', ' +
-          (Math.round(mainPinLocationTop + window.main.halfMainPinHeight));
+        fillAddressValue(window.main.halfActiveMainPinWidth, window.main.halfMainPinHeight);
       }
     },
 
