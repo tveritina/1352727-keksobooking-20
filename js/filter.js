@@ -75,5 +75,11 @@
     });
   };
 
+  window.filter = {
+    resetMapFilters: function () {
+      filter.reset();
+    }
+  };
+
   filter.addEventListener('change', onFilterChange);
 })();

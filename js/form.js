@@ -61,8 +61,7 @@
 
   resetFormButton.addEventListener('click', function (evt) {
     evt.preventDefault();
-    form.reset();
-    window.offerForm.fillAddress();
+    deactivatePageAndResetform();
   });
 
   var showSuccessSentModal = function () {
@@ -118,6 +117,7 @@
   var deactivatePageAndResetform = function () {
     window.card.removeCardPopups();
     window.pin.removePins();
+    window.filter.resetMapFilters();
 
     window.map.deactivateMap();
     window.map.blockMapFilter(true);
