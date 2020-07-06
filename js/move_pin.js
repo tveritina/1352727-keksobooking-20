@@ -24,8 +24,8 @@
       };
 
       // Координаты острого края метки
-      var currentXmapPin = mainMapPin.offsetLeft - shift.x + window.main.halfMainPinWidth;
-      var currentYmapPin = mainMapPin.offsetTop - shift.y + window.main.mainPinHeight;
+      var currentXmapPin = mainMapPin.offsetLeft - shift.x + window.main.halfActiveMainPinWidth;
+      var currentYmapPin = mainMapPin.offsetTop - shift.y + window.main.activeMainPinHeight;
 
       if (currentYmapPin >= window.main.minMainPinYCoord && currentYmapPin <= window.main.maxMainPinYCoord) {
         mainMapPin.style.top = (mainMapPin.offsetTop - shift.y) + 'px';

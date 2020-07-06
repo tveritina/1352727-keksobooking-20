@@ -15,8 +15,8 @@
       activatePage();
       window.map.blockMapFilter(false);
       window.offerForm.blockFormFilter(false);
-      window.offerForm.fillAddress();
       window.offerForm.activateForm();
+      window.offerForm.fillAddress();
       mainMapPin.removeEventListener('mousedown', onMouseDownActivateMap);
       mainMapPin.removeEventListener('keydown', onMouseDownActivateMap);
     }
@@ -26,8 +26,9 @@
   mainMapPin.addEventListener('keydown', onMouseDownActivateMap);
 
   window.main = {
-    halfMainPinWidth: 31,
-    mainPinHeight: 84,
+    halfActiveMainPinWidth: 31,
+    activeMainPinHeight: 84,
+    halfMainPinHeight: 31,
     minMainPinYCoord: 130,
     maxMainPinYCoord: 630,
     defaultMainPinLeftCoord: 570,

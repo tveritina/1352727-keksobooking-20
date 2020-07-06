@@ -24,10 +24,17 @@
       var mainPinLocationTop = parseInt(mainPin.style.top, 10);
       var mainPinLocationLeft = parseInt(mainPin.style.left, 10);
 
-      adressInput.value =
-        (Math.round(mainPinLocationLeft + window.main.halfMainPinWidth)) +
-        ', ' +
-        (Math.round(mainPinLocationTop + window.main.mainPinHeight));
+      if (isActiveForm()) {
+        adressInput.value =
+          (Math.round(mainPinLocationLeft + window.main.halfActiveMainPinWidth)) +
+          ', ' +
+          (Math.round(mainPinLocationTop + window.main.activeMainPinHeight));
+      } else {
+        adressInput.value =
+          (Math.round(mainPinLocationLeft + window.main.halfActiveMainPinWidth)) +
+          ', ' +
+          (Math.round(mainPinLocationTop + window.main.halfMainPinHeight));
+      }
     },
 
     // Блокирует поля формы при открытии страницы
@@ -37,6 +44,10 @@
         formFieldsets[i].disabled = state;
       }
     }
+  };
+
+  var isActiveForm = function () {
+    return !form.classList.contains('ad-form--disabled');
   };
 
   window.offerForm.blockFormFilter(true);
