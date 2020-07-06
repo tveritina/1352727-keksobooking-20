@@ -81,31 +81,41 @@
 
   var validatePriceByHomeType = function () {
     var typeValue = homeType.value;
+    var minValueErrorText = 'Минимальная цена ';
+
+    var priceRange = {
+      minValue: {
+        forPalace: 10000,
+        forHouse: 5000,
+        forFlat: 1000,
+        forBungalo: 0,
+      },
+    };
 
     switch (typeValue) {
       case 'palace':
-        offerPrice.placeholder = '10000';
+        offerPrice.placeholder = priceRange.minValue.forPalace;
         break;
 
       case 'house':
-        offerPrice.placeholder = '5000';
+        offerPrice.placeholder = priceRange.minValue.forHouse;
         break;
 
       case 'flat':
-        offerPrice.placeholder = '1000';
+        offerPrice.placeholder = priceRange.minValue.forFlat;
         break;
 
       case 'bungalo':
-        offerPrice.placeholder = '0';
+        offerPrice.placeholder = priceRange.minValue.forBungalo;
         break;
     }
 
-    if (typeValue === 'palace' && offerPrice.value < 10000) {
-      offerPrice.setCustomValidity('Минимальная цена 10 000');
-    } else if (typeValue === 'house' && offerPrice.value < 5000) {
-      offerPrice.setCustomValidity('Минимальная цена 5 000');
-    } else if (typeValue === 'flat' && offerPrice.value < 1000) {
-      offerPrice.setCustomValidity('Минимальная цена 1 000');
+    if (typeValue === 'palace' && offerPrice.value < priceRange.minValue.forPalace) {
+      offerPrice.setCustomValidity(minValueErrorText + priceRange.minValue.forPalace);
+    } else if (typeValue === 'house' && offerPrice.value < priceRange.minValue.forHouse) {
+      offerPrice.setCustomValidity(minValueErrorText + priceRange.minValue.forHouse);
+    } else if (typeValue === 'flat' && offerPrice.value < priceRange.minValue.forFlat) {
+      offerPrice.setCustomValidity(minValueErrorText + priceRange.minValue.forFlat);
     } else {
       offerPrice.setCustomValidity('');
     }
