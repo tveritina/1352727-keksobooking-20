@@ -5,6 +5,13 @@
   var MAX_TITLE_LENGTH = 100;
   var MAX_PRICE_VALUE = 1000000;
 
+  var minPrice = {
+    FOR_PALACE: 10000,
+    FOR_HOUSE: 5000,
+    FOR_FLAT: 1000,
+    FOR_BUNGALO: 0,
+  };
+
   // Валидация количества гостей
   var roomsSelect = document.querySelector('#room_number');
   var capacitySelect = document.querySelector('#capacity');
@@ -82,13 +89,6 @@
   var validatePriceByHomeType = function () {
     var typeValue = homeType.value;
     var minValueErrorText = 'Минимальная цена ';
-
-    var minPrice = {
-      FOR_PALACE: 10000,
-      FOR_HOUSE: 5000,
-      FOR_FLAT: 1000,
-      FOR_BUNGALO: 0,
-    };
 
     switch (typeValue) {
       case 'palace':
