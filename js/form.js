@@ -4,6 +4,10 @@
   var form = document.querySelector('.ad-form');
   var adressInput = document.querySelector('#address');
   var resetFormButton = document.querySelector('.ad-form__reset');
+  var ButtonType = {
+    ESCAPE: 'Escape',
+    MAIN_MOUSE_BUTTON: 0
+  };
 
   window.offerForm = {
     activateForm: function () {
@@ -74,7 +78,7 @@
   };
 
   var onClickOrEscapeCloseSuccessSentModal = function (evt) {
-    if (evt.button === 0 || evt.code === 'Escape') {
+    if (evt.button === ButtonType.MAIN_MOUSE_BUTTON || evt.code === ButtonType.ESCAPE) {
       removeModalByClass('.success');
       document.removeEventListener('keydown', onClickOrEscapeCloseSuccessSentModal);
     }
@@ -96,7 +100,7 @@
   };
 
   var onClickOrEscapeCloseErrorSentModal = function (evt) {
-    if (evt.button === 0 || evt.code === 'Escape') {
+    if (evt.button === ButtonType.MAIN_MOUSE_BUTTON || evt.code === ButtonType.ESCAPE) {
       removeModalByClass('.error');
       document.removeEventListener('keydown', onClickOrEscapeCloseErrorSentModal);
     }

@@ -66,7 +66,7 @@
   offerPrice.addEventListener('input', function () {
     var parsedValue = parseInt(offerPrice.value, 10);
 
-    if (isNaN(parsedValue) === true) {
+    if (isNaN(parsedValue)) {
       offerPrice.setCustomValidity('Введите число');
     } else if (parsedValue > MAX_PRICE_VALUE) {
       offerPrice.setCustomValidity('Значение не может быть больше ' + MAX_PRICE_VALUE);
