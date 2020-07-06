@@ -61,7 +61,7 @@
 
     if (isNaN(parsedValue) === true) {
       offerPrice.setCustomValidity('Введите число');
-    } else if (offerPrice.value > MAX_PRICE_VALUE) {
+    } else if (parsedValue > MAX_PRICE_VALUE) {
       offerPrice.setCustomValidity('Значение не может быть больше ' + MAX_PRICE_VALUE);
     } else {
       offerPrice.setCustomValidity('');
