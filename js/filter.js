@@ -60,7 +60,7 @@
 
   var onFilterChange = function () {
     window.debounce(function () {
-      filteredOffers = window.offers;
+      filteredOffers = window.data.offers;
 
       filteredOffers = filteredOffers.filter(filterByType);
       filteredOffers = filteredOffers.filter(filterByPrice);
