@@ -62,7 +62,7 @@
     if (isNaN(parsedValue) === true) {
       offerPrice.setCustomValidity('Введите число');
     } else if (parsedValue > MAX_PRICE_VALUE) {
-      offerPrice.setCustomValidity('Значение не может быть больше 1 000 000');
+      offerPrice.setCustomValidity('Значение не может быть больше ' + MAX_PRICE_VALUE);
     } else {
       offerPrice.setCustomValidity('');
     }
@@ -83,39 +83,37 @@
     var typeValue = homeType.value;
     var minValueErrorText = 'Минимальная цена ';
 
-    var priceRange = {
-      minValue: {
-        forPalace: 10000,
-        forHouse: 5000,
-        forFlat: 1000,
-        forBungalo: 0,
-      },
+    var minPrice = {
+      FOR_PALACE: 10000,
+      FOR_HOUSE: 5000,
+      FOR_FLAT: 1000,
+      FOR_BUNGALO: 0,
     };
 
     switch (typeValue) {
       case 'palace':
-        offerPrice.placeholder = priceRange.minValue.forPalace;
+        offerPrice.placeholder = minPrice.FOR_PALACE;
         break;
 
       case 'house':
-        offerPrice.placeholder = priceRange.minValue.forHouse;
+        offerPrice.placeholder = minPrice.FOR_HOUSE;
         break;
 
       case 'flat':
-        offerPrice.placeholder = priceRange.minValue.forFlat;
+        offerPrice.placeholder = minPrice.FOR_FLAT;
         break;
 
       case 'bungalo':
-        offerPrice.placeholder = priceRange.minValue.forBungalo;
+        offerPrice.placeholder = minPrice.FOR_BUNGALO;
         break;
     }
 
-    if (typeValue === 'palace' && offerPrice.value < priceRange.minValue.forPalace) {
-      offerPrice.setCustomValidity(minValueErrorText + priceRange.minValue.forPalace);
-    } else if (typeValue === 'house' && offerPrice.value < priceRange.minValue.forHouse) {
-      offerPrice.setCustomValidity(minValueErrorText + priceRange.minValue.forHouse);
-    } else if (typeValue === 'flat' && offerPrice.value < priceRange.minValue.forFlat) {
-      offerPrice.setCustomValidity(minValueErrorText + priceRange.minValue.forFlat);
+    if (typeValue === 'palace' && offerPrice.value < minPrice.FOR_PALACE) {
+      offerPrice.setCustomValidity(minValueErrorText + minPrice.FOR_PALACE);
+    } else if (typeValue === 'house' && offerPrice.value < minPrice.FOR_HOUSE) {
+      offerPrice.setCustomValidity(minValueErrorText + minPrice.FOR_HOUSE);
+    } else if (typeValue === 'flat' && offerPrice.value < minPrice.FOR_FLAT) {
+      offerPrice.setCustomValidity(minValueErrorText + minPrice.FOR_FLAT);
     } else {
       offerPrice.setCustomValidity('');
     }
